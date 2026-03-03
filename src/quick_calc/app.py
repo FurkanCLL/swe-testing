@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from src.quick_calc.engine import CalculatorEngine
+from src.quick_calc.controller import CalculatorController
 
 
 class CalculatorApp(ctk.CTk):
@@ -12,7 +12,7 @@ class CalculatorApp(ctk.CTk):
         self.title("Quick-Calc")
         self.geometry("300x400")
 
-        self.engine = CalculatorEngine()
+        self.controller = CalculatorController()
         self.current_input = ""
 
         self.create_widgets()
@@ -49,25 +49,9 @@ class CalculatorApp(ctk.CTk):
                 row += 1
 
     def on_button_click(self, value):
-        if value == "C":
-            self.current_input = ""
-            self.display.delete(0, "end")
-
-        elif value == "=":
-            try:
-                result = eval(self.current_input)
-                self.display.delete(0, "end")
-                self.display.insert(0, str(result))
-                self.current_input = str(result)
-            except Exception:
-                self.display.delete(0, "end")
-                self.display.insert(0, "Error")
-                self.current_input = ""
-
-        else:
-            self.current_input += value
-            self.display.insert("end", value)
-
+        result_text = self.controller.press(value)
+        self.display.delete(0, "end")
+        self.display.insert(0, result_text)
 
 if __name__ == "__main__":
     app = CalculatorApp()
