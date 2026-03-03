@@ -69,3 +69,7 @@ Two common Python testing frameworks are:
 - Easier to write parameterized tests  
 
 Pytest was selected because of its simplicity and cleaner syntax, which makes writing and maintaining tests easier for small and medium-sized projects.
+
+
+
+#### Developed by Furkan Ciloglu | 231ADB104
